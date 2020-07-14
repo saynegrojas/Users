@@ -1,0 +1,26 @@
+[
+    {
+        "UserId": 1,
+        "FirstName": "john",
+        "LastName": "Smith",
+        "Email": "JS@gmail.com",
+        "Password": "john",
+        "JobRole": "IT Director"
+    },
+    {
+        "UserId": 2,
+        "FirstName": "joe",
+        "LastName": "Allen",
+        "Email": "JA@gmail.com",
+        "Password": "joe",
+        "JobRole": "Manager"
+    },
+    {
+        "UserId": 3,
+        "FirstName": "glen",
+        "LastName": "Grayson",
+        "Email": "GG@gmail.com",
+        "Password": "glen",
+        "JobRole": "Developer"
+    }
+]

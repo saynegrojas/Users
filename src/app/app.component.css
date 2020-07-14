@@ -1,0 +1,14 @@
+.nav-link:hover {    
+    color: #f8f9fa;    
+}
+li, a {
+    color: #4f6c8a;      
+}
+.nav-link.active {
+    background-color: transparent;
+    color: #f8f9fa;    
+    
+}
+/* a:focus{
+    color: #4f6c8a;
+} */

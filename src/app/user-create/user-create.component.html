@@ -1,76 +1,265 @@
 <div class="row">
-    <div class="col-md-2 mb-3 mt-3">
-        <button class="btn btn-primary btn-sm" (click)="onBack()">
-            <!-- onclick -->
-            < </button>
-    </div>
-    <div class="col-md-8 mb-3"></div>
-    <!-- Needs to return to Login page not home -->
-    <div class="col-md-2 mb-3 mt-3 text-right">
-        <button class="btn btn-primary btn-sm" [routerLink]="['/home']">
-            Log out
-        </button>
-    </div>
+  <div class="col-md-2 mb-3 mt-3">
+    <button class="btn btn-primary btn-sm" (click)="onBack()">
+      <!-- onclick -->
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+  <div class="col-md-8 mb-3"></div>
+  <!-- Needs to return to Login page not home -->
+  <div class="col-md-2 mb-3 mt-3 text-right">
+    <button class="btn btn-primary btn-sm" [routerLink]="['/home']">
+      Log out
+    </button>
+  </div>
 </div>
 <div class="card shadow-lg mb-5 bg-white rounded">
-    <div class="card-body">
-        <div class="card-title mb-3 ">
-            <h3 class="text-center">Create User</h3>
-        </div>
-        <form #form="ngForm" ngNativeValidate>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="first-name">First Name</label>
-                    <input type="text" class="form-control" id="first-name"
-                        placeholder="John" required>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="last-name">Last Name</label>
-                    <input type="text" class="form-control" id="last-name"
-                        placeholder="Doe" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email"
-                        placeholder="Example@gmail.com"
-                        required>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="phone">Phone Number</label>
-                    <input type="email" class="form-control" id="phone"
-                        placeholder="e.g. 999-999-9999"
-                        required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password"
-                        required>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirm-password"
-                        required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="job-role">Select Job Role</label>
-                    <select class="custom-select">
-                        <option selected>Job Role</option>
-                        <option value="1">Role One</option>
-                        <option value="2">Role Two</option>
-                        <option value="3">Role Three</option>
-                    </select>
-                </div>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-primary col-md-2" type="submit">Submit</button>
-            </div>
-        </form>
+  <div class="card-body">
+    <div class="card-title mb-3">
+      <h3 class="text-center">{{ pageTitle }}</h3>
     </div>
+    <!-- <div class="form-group">
+          <label>First Name</label>
+          <input type="text" #firstName="ngModel" required minlength="3" class="form-control" name="firstName" 
+          [class.is-invalid]="firstName.invalid && firstName.touched" [(ngModel)]="empModel.firstName">
+          <div *ngIf="firstName.touched && firstName.errors">
+            <div class="alert alert-danger" *ngIf="firstName.errors.required">First Name is required</div>
+            <div class="alert alert-danger" *ngIf="firstName.errors.minlength">First Name should be at least 3 characters long</div>
+          </div>
+        </div> -->
+
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label>First Name</label>
+          <input
+            type="text"
+            #FirstName="ngModel"
+            required
+            minlength="3"
+            class="form-control"
+            name="FirstName"
+            [class.is-invalid]="FirstName.invalid && FirstName.touched"
+            [(ngModel)]="userModel.FirstName"
+            placeholder="John"
+          />
+          <div *ngIf="FirstName.touched && FirstName.errors">
+            <div class="alert alert-danger" *ngIf="FirstName.errors.required">
+              First name is required
+            </div>
+            <div class="alert alert-danger" *ngIf="FirstName.errors.minlength">
+              First Name should be at least 3 characters long
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Last Name</label>
+          <input
+            type="text"
+            #LastName="ngModel"
+            required
+            minlength="3"
+            class="form-control"
+            name="LastName"
+            [class.is-invalid]="LastName.invalid && LastName.touched"
+            [(ngModel)]="userModel.LastName"
+            placeholder="Doe"
+          />
+          <div *ngIf="LastName.touched && LastName.errors">
+            <div class="alert alert-danger" *ngIf="LastName.errors.required">
+              Last name is required
+            </div>
+            <div class="alert alert-danger" *ngIf="LastName.errors.minlength">
+              Last Name should be at least 3 characters long
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            #Email="ngModel"
+            required
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            class="form-control"
+            name="Email"
+            [class.is-invalid]="Email.invalid && Email.touched"
+            [(ngModel)]="userModel.Email"
+            placeholder="Example@gmail.com"
+          />
+          <div *ngIf="Email.touched && Email.errors">
+            <div class="alert alert-danger" *ngIf="Email.errors.required">
+              Email is required
+            </div>
+            <div class="alert alert-danger" *ngIf="Email.errors.pattern">
+              Invalid email format (e.g. example@example.com)
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Phone Number</label>
+          <input
+            type="tel"
+            #Phone="ngModel"
+            required
+            pattern="^[7-9][0-9]{9}$"
+            maxlength="10"
+            minlength="10"
+            class="form-control"
+            name="Phone"
+            [class.is-invalid]="Phone.invalid && Phone.touched"
+            [(ngModel)]="userModel.Phone"
+            placeholder="e.g. 123-456-7890"
+          />
+
+          <div *ngIf="Phone.touched && !Phone.valid">
+            <div class="alert alert-danger" *ngIf="Phone.errors.required">
+              Phone number is required.
+            </div>
+            <div class="alert alert-danger" *ngIf="Phone.errors.pattern">
+              Invaild Phone number
+            </div>
+            <!-- <div class="alert alert-danger" *ngIf="Phone.errors.minlength">
+              Phone number must be at least 10 characters long
+            </div>
+            <div class="alert alert-danger" *ngIf="Phone.errors.maxlength">
+              Phone number must be at least 10 characters long
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label>Password</label>
+          <input
+            type="password"
+            #Password="ngModel"
+            required
+            minlength="4"
+            class="form-control"
+            name="Password"
+            [(ngModel)]="userModel.Password"
+            [class.is-invalid]="Password.invalid && Password.touched"
+          />
+          <div *ngIf="Password.touched && !Password.valid">
+            <div class="alert alert-danger" *ngIf="Password.errors.required">
+              Password is required.
+            </div>
+            <div class="alert alert-danger" *ngIf="Password.errors.minlength">
+              Password should be at least 4 characters long
+            </div>
+          </div>
+        </div>
+        <!-- need to use reactiveforms -->
+        <div class="col-md-6 mb-3">
+          <label for="confirm-password">Confirm Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirm-password"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label>Select Job Role</label>
+          <select
+            class="form-control custom-select"
+            #JobRoleID
+            [(ngModel)]="userModel.JobRoleID"
+          >
+            <!-- need to populate job role -->
+            <option selected>Job Role ID</option>
+            <option value="1">{{ userForm.JobRoleID }}</option>
+            <option value="2">Role Two</option>
+            <option value="3">Role Three</option>
+          </select>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          class="btn btn-primary col-md-2"
+          type="submit"
+          [disabled]="userForm.form.invalid"
+          data-toggle="modal"
+          data-target="#addedModal"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
-<br>
+<br />
+<!-- <div class="form-group select-box">
+<select class="form-control select_style1" [(ngModel)]='car.model' formControlName='model' #model>
+<option value="" >Select Model</option>
+<option value="option1b">Option 1</option>
+<option value="option2b">Option 2</option>
+<option value="option3b">Option 3</option>
+</select>
+<span *ngIf="modelForm.get('model').hasError('required') && modelForm.get('model').touched" class='error' padding>Model is a required field.</span>
+</div> -->
+<div
+  class="modal fade"
+  id="addedModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title" id="exampleModalLabel">New user added</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-row mb-2">
+            <div class="col-md-2">
+              <label>Name: </label>
+            </div>
+            <div class="col-md-9">
+              <p class="card-text">
+                {{ users.FirstName }} {{ users.LastName }}
+              </p>
+            </div>
+          </div>
+          <div class="form-row mb-2">
+            <div class="col-md-2">
+              <label>Email: </label>
+            </div>
+            <div class="col-md-9">
+              <p class="card-text">{{ users.Email }}</p>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-2">
+              <label>Phone: </label>
+            </div>
+            <div class="col-md-9">
+              <p class="card-text">{{ users.Phone }}</p>
+            </div>
+          </div>
+          <div class="text-right modal-footer">
+            <div class="text-right">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+                [routerLink]="['/users']"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="modal-footer"> -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>

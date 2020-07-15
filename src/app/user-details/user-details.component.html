@@ -60,59 +60,72 @@
 </div> -->
 
 <div class="row">
-    <div class="col-md-2 mb-3 mt-3">
-        <button class="btn btn-primary btn-sm" (click)="onBack()">
-            <!-- onclick -->
-            < </button>
-    </div>
-    <div class="col-md-8 mb-3"></div>
-    <!-- Needs to return to Login page not home -->
-    <div class="col-md-2 mb-3 mt-3 text-right">
-        <button class="btn btn-primary btn-sm" [routerLink]="['/home']">
-            Log out
-        </button>
-    </div>
+  <div class="col-md-2 mb-3 mt-3">
+    <button class="btn btn-primary btn-sm" (click)="onBack()">
+      <!-- onclick -->
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+  <div class="col-md-8 mb-3"></div>
+  <!-- Needs to return to Login page not home -->
+  <div class="col-md-2 mb-3 mt-3 text-right">
+    <button class="btn btn-primary btn-sm" [routerLink]="['/home']">
+      Log out
+    </button>
+  </div>
 </div>
 <div class="card shadow-lg mb-5 bg-white rounded">
-    <div class="card-body">
-        <div class="card-title mb-3 ">
-            <h3 class="text-center">{{pageTitle}} </h3>
-        </div>
-        <form #form="ngForm" ngNativeValidate>
-            <div class="form-row">
-                <div class="col-md-3">
-                    <label for="first-name">First Name</label>
-                    <h5>{{users.FirstName | capFirstLetter
-                        }}
-                    </h5>
-                </div>
-            </div>
-            <hr>
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label for="last-name">Last Name</label>
-                    <h5>{{users.LastName}}</h5>
-                </div>
-            </div>
-            <hr>
-            <div class="form-row">
-                <div class="col-md-3">
-                    <label for="email">Email</label>
-                    <h5>{{users.Email}}</h5>
-                </div>
-            </div>
-            <hr>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                    <label for="phone">Phone Number</label>
-                    <h5>999-999-9999</h5>
-                </div>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-primary col-md-2" [routerLink]="['/users']">
-                    Back
-                </button>
-            </div>
-        </form>
+  <div class="card-body">
+    <div class="card-title mb-3">
+      <h3 class="text-center">
+        {{ user.FirstName | capFirstLetter }}'s {{ pageTitle }}
+      </h3>
     </div>
+    <form *ngIf="user" class="my-form">
+      <div class="form-row">
+        <div class="col-md-2 mb-3">
+          <label for="first-name">First Name: </label>
+        </div>
+        <div class="col-md-3 mb-3">
+          <h5>{{ user.FirstName | capFirstLetter }}</h5>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-2 mb-3">
+          <label for="last-name">Last Name: </label>
+        </div>
+        <div class="col-md-3 mb-3">
+          <h5>{{ user.LastName | capFirstLetter }}</h5>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-2 mb-3">
+          <label for="email">Email: </label>
+        </div>
+        <div class="col-md-3 mb-3">
+          <h5>{{ user.Email }}</h5>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-2 mb-3">
+          <label for="phone">Phone Number: </label>
+        </div>
+        <div class="col-md-3 mb-3">
+          <h5>
+            {{ user.Phone | slice: 0:3 }}-{{ user.Phone | slice: 3:6 }}-{{
+              user.Phone | slice: 6:10
+            }}
+          </h5>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary col-md-2" [routerLink]="['/users']">
+          OK
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

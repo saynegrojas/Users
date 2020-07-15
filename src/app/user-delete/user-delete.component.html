@@ -1,0 +1,149 @@
+<div class="row">
+  <div class="col-md-2 mb-3 mt-3">
+    <button class="btn btn-primary btn-sm" (click)="onBack()">
+      <!-- onclick -->
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+  <div class="col-md-8 mb-3"></div>
+  <!-- Needs to return to Login page not home -->
+  <div class="col-md-2 mb-3 mt-3 text-right">
+    <button class="btn btn-primary btn-sm" [routerLink]="['/home']">
+      Log out
+    </button>
+  </div>
+</div>
+<div class="card shadow-lg mb-5 bg-white rounded">
+  <div class="card-body">
+    <div class="card-title mb-3">
+      <h3 class="text-center">
+        Delete Summary
+      </h3>
+    </div>
+    <form *ngIf="user" class="my-form">
+      <div class="form-row">
+        <div class="col-md-2 mb-3">
+          <label for="first-name">First Name: </label>
+        </div>
+        <div class="col-md-3 mb-3">
+          <h5>{{ user.FirstName | capFirstLetter }}</h5>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-2 mb-3">
+          <label for="last-name">Last Name: </label>
+        </div>
+        <div class="col-md-3 mb-3">
+          <h5>{{ user.LastName | capFirstLetter }}</h5>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-2 mb-3">
+          <label for="email">Email: </label>
+        </div>
+        <div class="col-md-3 mb-3">
+          <h5>{{ user.Email }}</h5>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-2 mb-3">
+          <label for="phone">Phone Number: </label>
+        </div>
+        <div class="col-md-3 mb-3">
+          <h5>
+            {{ user.Phone | slice: 0:3 }}-{{ user.Phone | slice: 3:6 }}-{{
+              user.Phone | slice: 6:10
+            }}
+          </h5>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          class="btn btn-primary col-md-2"
+          data-toggle="modal"
+          data-target="#addModal"
+        >
+          Delete
+        </button>
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Launch demo modal
+          </button> -->
+      </div>
+    </form>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="addModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title text-center" id="exampleModalLabel">
+            Delete
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="text-center">
+            <p>
+              Are you sure you want to delete?
+            </p>
+            <small>This will permenantly delete your information.</small>
+          </div>
+          <br />
+          <!-- <div class="form-row mb-2">
+            <div class="col-md-2">
+              <label>Name: </label>
+            </div>
+            <div class="col-md-9">
+              <p class="card-text">{{ user.FirstName }} {{ user.LastName }}</p>
+            </div>
+          </div>
+          <div class="form-row mb-2">
+            <div class="col-md-2">
+              <label>Email: </label>
+            </div>
+            <div class="col-md-9">
+              <p class="card-text">{{ user.Email }}</p>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-2">
+              <label>Phone: </label>
+            </div>
+            <div class="col-md-9">
+              <p class="card-text">{{ user.Phone }}</p>
+            </div>
+          </div>
+        -->
+          <div class="text-right modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              (click)="deleteUser(user)"
+            >
+              Yes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>

@@ -1,26 +1,23 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute, ParamMap } from "@angular/router";
-import { IUser } from "../users/user";
-import { User } from "../users/usersModel";
+import { ParamMap, Router, ActivatedRoute } from "@angular/router";
 import { UserService } from "../users/user.service";
 
 @Component({
-  selector: "app-user-edit",
-  templateUrl: "./user-edit.component.html",
-  styleUrls: ["./user-edit.component.css"],
+  selector: "app-user-delete",
+  templateUrl: "./user-delete.component.html",
+  styleUrls: ["./user-delete.component.css"],
 })
-export class UserEditComponent implements OnInit {
+export class UserDeleteComponent implements OnInit {
   public userId;
   // users: IUser[];
   errorMessage: string;
   public user;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService
   ) {}
-  public userModel = new User();
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -34,16 +31,15 @@ export class UserEditComponent implements OnInit {
       (error) => (this.errorMessage = error)
     );
   }
-
-  update(userId, user) {
-    console.log(userId, user);
-    this.userService.updateUser(this.userId, this.user).subscribe(
-      (data) => {
-        this.user = data;
-        console.log(this.user);
-      },
-      (error) => (this.errorMessage = error)
-    );
+  //delete
+  deleteUser(user) {
+    this.userService.deleteUser(user.UserID).subscribe(() => {
+      this.userService.getUsers().subscribe(
+        (data) => (this.user = data),
+        (error) => (this.errorMessage = error)
+      );
+      this.router.navigate(["/users"]);
+    });
   }
   onBack(): void {
     //router instance and call the navigate method and pass in a link param array

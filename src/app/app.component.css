@@ -1,14 +1,41 @@
-.nav-link:hover {    
-    color: #f8f9fa;    
+.nav-link:hover {
+  color: #f8f9fa;
 }
-li, a {
-    color: #4f6c8a;      
+li,
+a {
+  color: #4f6c8a;
 }
 .nav-link.active {
-    background-color: transparent;
-    color: #f8f9fa;    
-    
+  background-color: transparent;
+  color: #f8f9fa;
+}
+.nav-tabs {
+  border-bottom-color: #79a0ca;
+  border-bottom: none;
+}
+.nav-tabs .nav-link.active,
+.nav-link:hover {
+  border-bottom-color: #79a0ca;
+}
+.navbar {
+  padding-bottom: 0;
 }
 /* a:focus{
     color: #4f6c8a;
 } */
+/*
+img {
+  width: 30px;
+}
+.logo {
+  background-color: transparent;
+  border-color: transparent;
+}
+img.hover-shadow {
+  transition: 0.3s;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+}
+*/

@@ -1,23 +1,16 @@
-.ng-valid[required], .ng-valid.required  {
-    border-left: 5px solid #42A948; /* green */
-  }
-  
-  .ng-invalid:not(form)  {
-    border-left: 5px solid #a94442; /* red */
-  }
-
-  .card-body {
-      background-color: #f8f9fa;
-  }
-  .card-title {
-      background-color: #4d749c;
-      color: white;
-      padding: 10px;
-  }
-  input, .custom-select {
-      background-color: #e9ecef;
-  }
-  .btn-primary {
-    background-color: #4d749c;    
-    border-color: #4d749c;
-  }
+.card-body {
+  background-color: #f8f9fa;
+}
+.card-title {
+  background-color: #4d749c;
+  color: white;
+  padding: 10px;
+}
+input,
+.custom-select {
+  background-color: #e9ecef;
+}
+.btn-primary {
+  background-color: #4d749c;
+  border-color: #4d749c;
+}

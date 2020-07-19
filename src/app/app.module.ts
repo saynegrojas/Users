@@ -5,6 +5,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { UserModule } from "./users/user.module";
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
+import { MatSidenavModule } from "@angular/material";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 //components
 import { AppComponent } from "./app.component";
@@ -18,6 +21,8 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
     RouterModule.forRoot([
       { path: "home", component: HomeComponent },
       //redirect default as our home page specified redirect path
@@ -32,6 +37,7 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
       },
     ]),
     UserModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
